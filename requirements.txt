@@ -1,2 +1,4 @@
 pillow
 Flask
+gunicorn
+waitress
