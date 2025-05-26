@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Minecraft Jersey Skin</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Minecraft Jersey Skin Overlayer</h1>
+    
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flash-messages">
+          {% for msg in messages %}
+            <li>{{ msg }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" enctype="multipart/form-data">
+      <label>
+        Upload Skin (64×64 PNG)
+        <input type="file" name="skin" accept="image/*" required onchange="previewImage(event, 'skinPreview')">
+        <img id="skinPreview" class="preview-img" />
+      </label>
+
+      <label>
+        Upload Jersey (transparent PNG)
+        <input type="file" name="jersey" accept="image/*" required onchange="previewImage(event, 'jerseyPreview')">
+        <img id="jerseyPreview" class="preview-img" />
+      </label>
+
+      <button type="submit">✨ Compose & Download</button>
+    </form>
+  </div>
+
+  <script>
+    function previewImage(event, id) {
+      const output = document.getElementById(id);
+      output.src = URL.createObjectURL(event.target.files[0]);
+      output.onload = () => URL.revokeObjectURL(output.src);
+    }
+  </script>
+</body>
+</html>
