@@ -1,2 +1,2 @@
 # JerseyOverlay
-Tool to overlay Jerseys onto MC Skins.
+Overlay custom jerseys onto Minecraft skins with ease.
